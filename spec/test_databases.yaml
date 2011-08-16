@@ -1,0 +1,17 @@
+good_database:
+  database: "good_database"
+  user: "username"
+  password: "password"
+  hostname: "localhost"
+  
+other_good_database:
+  database: "other_good_database"
+  user: "username"
+  password: "password"
+  hostname: "localhost"
+  
+bad_database:
+  database: "bad_database"
+  user: "username"
+  password: "badpassword"
+  hostname: "locahost"

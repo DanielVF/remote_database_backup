@@ -8,6 +8,7 @@ module RemoteDatabaseBackup
   
   def clear_staging_area(config)
     staging=config['staging']
+    `mkdir -p #{staging}`
     Dir.new(staging).each do | filename |
       next if ['.','..'].include? filename
       File.delete(config['staging']+'/'+filename)
@@ -24,7 +25,7 @@ module RemoteDatabaseBackup
             '-p'+database["password"],
             '-h', database["hostname"],
             database["database"]
-            ].shelljoin + " > "+["staging/"+database['database']+'.sql'].shelljoin
+            ].shelljoin + " > "+[staging+"/"+database['database']+'.sql'].shelljoin
     status = POpen4::popen4(command) do |stdout, stderr|
               error = stderr.read
               if not error.empty?

@@ -76,10 +76,10 @@ module RemoteDatabaseBackup
     message += "\n"
     
     message += "<div style='font-family:Helvetica'><h2>Database Backup Results</h2>"
-    for dbsuccess, database, why in results
+    for database, dbsuccess, why in results
       message +="<div style='clear:both'>"
       message +="<div style='clear:both'>"
-      message +="<div style='float:left; width:5em; text-align:center; color: #fff; background: #FFCC33; font-size:.8em; -moz-border-radius: 2px; -webkit-border-radius: 2px; margin-right:6.em'>"+(dbsuccess ? 'success' : 'failure')+"</div>"
+      message +="<div style='float:left; width:5em; text-align:center; color: #fff; background: #{(dbsuccess ? '#FFCC33' : '#FF0000')}; font-size:.8em; -moz-border-radius: 2px; -webkit-border-radius: 2px; margin-right:6.em'>"+(dbsuccess ? 'success' : 'failure')+"</div>"
       message +="<span style='padding-left:.5em'>#{database} - #{why}</span>\n\n"
     end
     message += "</div>"

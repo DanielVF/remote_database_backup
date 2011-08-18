@@ -1,0 +1,4 @@
+source: /tmp/remote_database_backup
+destination: /ABSOLUTE/PATH/GOES/HERE
+to_email: ""
+from_email: ""

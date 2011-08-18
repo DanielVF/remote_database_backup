@@ -1,0 +1,5 @@
+-
+  database: "example_database"
+  user: "username"
+  password: "password"
+  hostname: "localhost"

@@ -73,6 +73,7 @@ module RemoteDatabaseBackup
     message += "To: #{config['to_email']}\n"
     message += "From: #{config['from_email']}\n"
     message += "Subject: #{subject}\n"
+    message += "Mime-Version: 1.0\n"
     message += "Content-Type: text/html; charset=\"utf8\"\n"
     message += "\n"
     

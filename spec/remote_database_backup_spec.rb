@@ -55,6 +55,7 @@ describe 'RemoteDatabaseBackup' do
   describe "Handles multiple databases" do
     describe "success" do
       before(:all) do
+        sleep(1) #So rdiffbackup doesn't get mad
         @successes, @results = Rdb.backup_all_databases(all_good, config)
       end
       it "shows as succeeded" do
@@ -67,10 +68,12 @@ describe 'RemoteDatabaseBackup' do
 
     describe "on a failure, will continue to backup other databases" do
       before(:all) do
-        @successes, @results = Rdb.backup_all_databases(all_good, config)
+        sleep(1) #So rdiffbackup doesn't get mad
+        @successes, @results = Rdb.backup_all_databases(all_good_and_bad, config)
       end
-      it "fails with a bad database" do
+      it "fails on the bad database" do
         @successes.should be_false
+        @results.find_all{|r|r[1]==true}.size.should == 2
       end 
     end
   end
@@ -80,10 +83,11 @@ describe 'RemoteDatabaseBackup' do
   describe "Emails the results" do
     describe "success" do
       before(:all) do
+        sleep(1) #So rdiffbackup doesn't get mad
         @email = Rdb.backup_all_databases_and_email(all_good, config)
       end
       it "sends an email" do
-        
+        @email.match(/Success/).should be_true
       end
     end
     describe "failure" do
@@ -92,6 +96,7 @@ describe 'RemoteDatabaseBackup' do
       end
       it "sends an email" do
         @email.match(/Fail/).should be_true
+        @email.match(/Success/).should be_false
       end
     end
   end
